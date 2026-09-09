@@ -1,0 +1,423 @@
+KMIT – SOFTWARE ENGINEERING LAB INTERNAL I
+SET–1 – FINAL ANSWER SHEET
+
+==================================================
+PART I – MAVEN WEB APPLICATION DEVELOPMENT
+==================================================
+
+1(a) Git clone and import into Eclipse
+
+Git command:
+git clone https://github.com/deepthisagar7/AI-OLMS.git
+
+Steps to import Maven project in Eclipse:
+1. Open Eclipse.
+2. File → Import.
+3. Select Maven → Existing Maven Projects.
+4. Click Next.
+5. Browse and select the cloned AI-OLMS folder containing pom.xml.
+6. Select the detected project.
+7. Click Finish.
+
+
+1(b) Correct pom.xml for WAR + Java 17
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.aiolms</groupId>
+    <artifactId>ai-olms</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>war</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>ai-olms</finalName>
+    </build>
+
+</project>
+
+
+Important corrections:
+1. <modelVersion>4.0.0</modelVersion>
+2. <packaging>war</packaging>
+3. Java compiler source = 17
+4. Java compiler target = 17
+5. <version>6.0.0</version>
+6. Close </dependencies>
+7. Close </build>
+
+
+1(c) Maven lifecycle phases
+
+clean:
+Deletes previously generated build files such as the target directory.
+
+compile:
+Compiles the source code.
+
+test:
+Runs the test cases.
+
+package:
+Packages the application into a JAR or WAR file.
+
+install:
+Installs the generated package into the local Maven repository.
+
+Phase that generates the WAR file:
+package
+
+
+1(d) Maven command to clean and build
+
+mvn clean package
+
+
+1(e) Java source/target version error
+
+Troubleshooting commands:
+
+java -version
+javac -version
+mvn -version
+
+Check:
+1. Installed Java version.
+2. Java version used by Maven.
+3. JAVA_HOME environment variable.
+4. pom.xml Java compiler source and target.
+
+The project should use Java 17.
+
+pom.xml:
+<maven.compiler.source>17</maven.compiler.source>
+<maven.compiler.target>17</maven.compiler.target>
+
+Set JAVA_HOME to JDK 17 if necessary and run:
+
+mvn clean package
+
+
+1(f) WAR builds but fails on Tomcat
+
+Possible causes and troubleshooting:
+
+1. Java version mismatch
+   Check:
+   java -version
+   Check the Java version used by Tomcat and ensure it is compatible.
+
+2. WAR deployment problem
+   Check whether AI-OLMS.war is present in Tomcat's webapps directory.
+
+3. Tomcat/application configuration or deployment error
+   Check Tomcat logs in the logs directory, especially catalina logs,
+   and verify that the WAR was successfully deployed.
+
+
+1(g) Different Java versions on different machines
+
+1. Identify version mismatch:
+   java -version
+   mvn -version
+
+2. Configure Maven to require Java 17:
+   <properties>
+       <maven.compiler.source>17</maven.compiler.source>
+       <maven.compiler.target>17</maven.compiler.target>
+   </properties>
+
+3. Same JDK version should be used across development and deployment because:
+   - It avoids version mismatch errors.
+   - It ensures consistent compilation.
+   - It ensures consistent application behaviour.
+   - It avoids compatibility problems.
+
+
+==================================================
+PART II – GIT & GITHUB
+==================================================
+
+2(a) Initialize Git and push to GitHub
+
+git init
+git status
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/deepthisagar7/AI-OLMS.git
+git branch -M main
+git push -u origin main
+
+
+2(b) Correct the latest commit message
+
+git commit --amend -m "Added Assignment Module"
+
+
+2(c) Create and switch to feature branch
+
+git checkout -b feature/course-recommendation
+
+OR:
+
+git switch -c feature/course-recommendation
+
+
+2(d) Recover deleted course.jsp before committing
+
+git restore course.jsp
+
+
+2(e) Resolve merge conflict
+
+1. Identify the conflicted file:
+   git status
+
+2. Open course.jsp and resolve the conflict manually.
+
+   Conflict markers look like:
+
+   <<<<<<< HEAD
+   your changes
+   =======
+   other branch changes
+   >>>>>>> main
+
+   Keep the required code and remove the conflict markers.
+
+3. Stage the resolved file:
+   git add course.jsp
+
+4. Complete the merge:
+   git commit
+
+5. Push the changes:
+   git push origin feature/course-recommendation
+
+Important:
+Do not run git merge again after resolving the conflict.
+The git commit completes the merge.
+
+
+If starting the merge:
+
+git checkout main
+git merge feature/course-recommendation
+
+Then resolve the conflict:
+git status
+Edit course.jsp
+git add course.jsp
+git commit
+git push origin main
+
+
+2(f) Unwanted files accidentally staged
+
+1. Remove one file from staging without deleting it:
+   git restore --staged <file>
+
+   OR:
+   git rm --cached <file>
+
+2. Check staged files:
+   git status
+
+3. Create .gitignore
+
+Example:
+
+.classpath
+.project
+.settings/
+target/
+*.log
+
+4. Add .gitignore:
+   git add .gitignore
+
+5. Commit:
+   git commit -m "Add gitignore"
+
+Important:
+.gitignore prevents matching untracked files from being added in future.
+If a file is already tracked, remove it from tracking using git rm --cached <file>.
+
+
+2(g) Incorrect latest commit
+
+Case 1: Commit has NOT been pushed
+
+Use:
+git reset --soft HEAD~1
+
+This removes the latest commit while keeping the changes staged.
+Correct the implementation and create a new commit.
+
+Case 2: Commit has ALREADY been pushed
+
+Use:
+git revert HEAD
+
+This creates a new commit that reverses the changes of the previous commit.
+Then push:
+
+git push
+
+Important:
+Not pushed → reset
+Already pushed → revert
+
+
+==================================================
+PART III – DOCKERIZATION
+==================================================
+
+3(a) Multi-stage Dockerfile for Maven WAR application
+
+# Build Stage
+FROM maven:3.9-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package
+
+# Runtime Stage
+FROM tomcat:10
+
+COPY --from=build /app/target/ai-olms.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+
+
+Explanation:
+FROM maven...17 → Maven with Java 17 for building.
+WORKDIR /app → Sets working directory inside the container.
+COPY . . → Copies project source code.
+RUN mvn clean package → Builds the WAR.
+FROM tomcat:10 → Uses Tomcat as runtime.
+COPY --from=build ... → Copies generated WAR to Tomcat webapps.
+EXPOSE 8080 → Exposes port 8080.
+
+
+3(b) Docker commands
+
+Build image:
+
+docker build -t ai-olms:latest .
+
+Run container:
+
+docker run -d -p 7012:8080 ai-olms:latest
+
+Application:
+http://localhost:7012
+
+
+3(c) Cannot access localhost:7012
+
+Four checks/commands:
+
+1. Check running containers:
+   docker ps
+
+2. Check all containers:
+   docker ps -a
+
+3. Check container logs:
+   docker logs <container_id>
+
+4. Check container configuration:
+   docker inspect <container_id>
+
+Also verify:
+docker port <container_id>
+
+Confirm that:
+Host 7012 → Container 8080
+
+
+3(d) Docker container running but browser gives 404
+
+Possible reasons:
+
+1. WAR file was not copied correctly into Tomcat.
+   Check:
+   docker exec -it <container_id> ls /usr/local/tomcat/webapps/
+
+2. Tomcat failed to deploy the WAR.
+   Check:
+   docker logs <container_id>
+
+3. Wrong WAR/context path.
+   If the WAR is named ai-olms.war, try:
+   http://localhost:7012/ai-olms
+
+4. Application deployment/configuration error.
+   Check the Tomcat logs and verify that the extracted ai-olms directory exists.
+
+Verification:
+docker exec -it <container_id> ls /usr/local/tomcat/webapps/
+
+Expected:
+ai-olms.war
+and/or
+ai-olms/
+
+==================================================
+MOST IMPORTANT COMMANDS TO MEMORIZE
+==================================================
+
+MAVEN:
+mvn clean package
+java -version
+javac -version
+mvn -version
+
+GIT:
+git init
+git status
+git add .
+git commit -m "Initial commit"
+git remote add origin URL
+git branch -M main
+git push -u origin main
+git commit --amend -m "message"
+git checkout -b feature/course-recommendation
+git restore course.jsp
+git merge feature/course-recommendation
+git restore --staged .
+git rm --cached <file>
+git reset --soft HEAD~1
+git revert HEAD
+
+DOCKER:
+docker build -t ai-olms:latest .
+docker run -d -p 7012:8080 ai-olms:latest
+docker ps
+docker ps -a
+docker logs <container_id>
+docker inspect <container_id>
+docker exec -it <container_id> ls /usr/local/tomcat/webapps/
