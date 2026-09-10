@@ -1,0 +1,260 @@
+==================== GIT COMMANDS – ONE LINE EXPLANATION ====================
+
+1. git init
+   → Initializes a new Git repository in the current folder.
+
+2. git clone <repository-url>
+   → Copies a remote repository to your local computer.
+
+3. git status
+   → Shows the current status of files and changes.
+
+4. git add <file-name>
+   → Adds a specific file to the staging area.
+
+5. git add .
+   → Adds all changed files to the staging area.
+
+6. git commit -m "message"
+   → Saves staged changes with a commit message.
+
+7. git log
+   → Displays the commit history.
+
+8. git log --oneline
+   → Displays commit history in a short one-line format.
+
+9. git diff
+   → Shows changes that have not been staged yet.
+
+10. git diff --staged
+    → Shows changes that have been staged but not committed.
+
+11. git config --global user.name "Your Name"
+    → Sets your Git username globally.
+
+12. git config --global user.email "your@email.com"
+    → Sets your Git email globally.
+
+==================== REMOTE REPOSITORY ====================
+
+13. git remote add origin <repository-url>
+    → Connects the local repository to a remote repository.
+
+14. git remote -v
+    → Shows all connected remote repositories and their URLs.
+
+15. git remote remove origin
+    → Removes the specified remote repository connection.
+
+16. git remote rename <old-name> <new-name>
+    → Renames an existing remote repository.
+
+17. git remote set-url origin <new-url>
+    → Changes the URL of an existing remote repository.
+
+18. git remote show origin
+    → Shows detailed information about the remote repository.
+
+19. git fetch
+    → Downloads changes from remote without merging them.
+
+20. git fetch origin <branch-name>
+    → Downloads changes from a specific remote branch.
+
+21. git pull
+    → Downloads and merges remote changes into the current branch.
+
+22. git push
+    → Uploads local commits to the remote repository.
+
+23. git push -u origin main
+    → Pushes for the first time and sets the upstream branch.
+
+24. git push origin <branch-name>
+    → Pushes a specific local branch to the remote repository.
+
+25. git branch -r
+    → Lists all remote branches.
+
+26. git remote prune origin
+    → Removes references to remote branches that no longer exist.
+
+27. git pull --rebase origin <branch-name>
+    → Rebases local changes on top of the remote branch.
+
+==================== BRANCHING ====================
+
+28. git branch
+    → Lists all local branches.
+
+29. git branch -a
+    → Lists both local and remote branches.
+
+30. git branch <branch-name>
+    → Creates a new branch.
+
+31. git checkout <branch-name>
+    → Switches to an existing branch.
+
+32. git checkout -b <branch-name>
+    → Creates a new branch and switches to it.
+
+33. git switch <branch-name>
+    → Switches to an existing branch.
+
+34. git switch -c <branch-name>
+    → Creates a new branch and switches to it.
+
+35. git merge <branch-name>
+    → Merges the specified branch into the current branch.
+
+36. git branch -d <branch-name>
+    → Safely deletes a branch that has been merged.
+
+37. git branch -D <branch-name>
+    → Force deletes a branch even if it is not merged.
+
+38. git branch -d feature-a feature-b feature-c
+    → Deletes multiple merged branches at once.
+
+39. git branch --merged
+    → Shows branches that have already been merged.
+
+40. git branch --no-merged
+    → Shows branches that have not been merged yet.
+
+==================== UNDOING CHANGES ====================
+
+41. git restore <file-name>
+    → Discards unstaged changes in a file.
+
+42. git restore --staged <file-name>
+    → Removes a file from staging without deleting its changes.
+
+43. git reset HEAD <file-name>
+    → Unstages a file but keeps its changes.
+
+44. git reset --soft HEAD~1
+    → Undoes the last commit but keeps changes staged.
+
+45. git reset --mixed HEAD~1
+    → Undoes the last commit and keeps changes unstaged.
+
+46. git reset --hard HEAD~1
+    → Completely removes the last commit and its changes.
+
+47. git commit --amend -m "New message"
+    → Changes the message of the most recent commit.
+
+48. git revert <commit-id>
+    → Creates a new commit that reverses a previous commit.
+
+==================== MERGE CONFLICT ====================
+
+49. git status
+    → Shows files that have merge conflicts.
+
+50. git add <file-name>
+    → Marks the manually resolved file as ready to commit.
+
+51. git commit -m "Resolved merge conflict"
+    → Saves the resolved merge conflict.
+
+==================== RECOVERING ====================
+
+52. git reflog
+    → Shows a history of all recent HEAD movements and actions.
+
+53. git checkout -b <branch-name> <commit-id>
+    → Recovers a deleted branch using its commit ID.
+
+==================== STASH ====================
+
+54. git stash
+    → Temporarily saves uncommitted changes.
+
+55. git stash list
+    → Shows all saved stashes.
+
+56. git stash apply
+    → Restores stashed changes without deleting the stash.
+
+57. git stash pop
+    → Restores stashed changes and removes the stash.
+
+58. git stash drop
+    → Deletes a saved stash.
+
+==================== BASIC FULL WORKFLOW ====================
+
+git init
+→ Initialize repository.
+
+git remote add origin <repository-url>
+→ Connect to GitHub repository.
+
+git status
+→ Check changed files.
+
+git add .
+→ Stage all files.
+
+git commit -m "Initial commit"
+→ Save changes locally.
+
+git branch -M main
+→ Rename current branch to main.
+
+git push -u origin main
+→ Push code to GitHub for the first time.
+
+==================== MOST IMPORTANT FOR EXAM ====================
+
+git status
+→ Check repository status.
+
+git add .
+→ Add all files to staging.
+
+git commit -m "message"
+→ Commit staged changes.
+
+git push
+→ Upload commits to remote.
+
+git pull
+→ Download and merge remote changes.
+
+git fetch
+→ Download remote changes without merging.
+
+git clone <url>
+→ Copy remote repository locally.
+
+git branch
+→ View branches.
+
+git checkout -b <branch-name>
+→ Create and switch to a branch.
+
+git checkout <branch-name>
+→ Switch branches.
+
+git merge <branch-name>
+→ Merge branches.
+
+git restore <file-name>
+→ Discard unstaged changes.
+
+git restore --staged <file-name>
+→ Unstage a file.
+
+git log --oneline
+→ View short commit history.
+
+git stash
+→ Temporarily save changes.
+
+git stash pop
+→ Restore saved changes.
